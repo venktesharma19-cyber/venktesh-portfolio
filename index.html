@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Venktesh Sharma | ProofOS Portfolio</title>
+  <meta name="description" content="ProofOS portfolio for Venktesh Sharma — Full Stack Software Engineer with React, Node.js, TypeScript, Python, AWS, Azure, DevOps, AI onboarding, and enterprise web application experience." />
+  <meta name="theme-color" content="#090b1a" />
+  <style>
+    :root{
+      --bg:#070914;
+      --panel:#0f1429;
+      --panel-2:#141b35;
+      --glass:rgba(255,255,255,.08);
+      --glass-2:rgba(255,255,255,.13);
+      --text:#f7f7fb;
+      --muted:#abb4d1;
+      --soft:#dce4ff;
+      --line:rgba(255,255,255,.13);
+      --red:#ff3d61;
+      --orange:#ff9f43;
+      --cyan:#20e3ff;
+      --blue:#6384ff;
+      --green:#49f0a8;
+      --purple:#a855f7;
+      --pink:#ff4ccf;
+      --yellow:#f7df1e;
+      --shadow: 0 30px 90px rgba(0,0,0,.45);
+      --radius: 28px;
+      --radius-sm: 16px;
+      --max: 1220px;
+    }
+    [data-mode="light"]{
+      --bg:#f6f7ff;
+      --panel:#ffffff;
+      --panel-2:#eef2ff;
+      --glass:rgba(9,12,30,.07);
+      --glass-2:rgba(9,12,30,.12);
+      --text:#0b1020;
+      --muted:#4e5874;
+      --soft:#141a31;
+      --line:rgba(10,16,35,.12);
+      --shadow:0 24px 80px rgba(54,71,122,.18);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(255,61,97,.28), transparent 34rem),
+        radial-gradient(circle at top right, rgba(32,227,255,.20), transparent 32rem),
+        radial-gradient(circle at 50% 45%, rgba(168,85,247,.15), transparent 40rem),
+        linear-gradient(135deg, var(--bg), #090b1a 44%, #06070d);
+      color:var(--text);
+      min-height:100vh;
+      overflow-x:hidden;
+    }
+    [data-mode="light"] body,
+    body[data-mode="light"]{
+      background:
+        radial-gradient(circle at top left, rgba(255,61,97,.18), transparent 34rem),
+        radial-gradient(circle at top right, rgba(32,227,255,.20), transparent 32rem),
+        radial-gradient(circle at 50% 45%, rgba(168,85,247,.13), transparent 40rem),
+        #f6f7ff;
+    }
+    a{color:inherit;text-decoration:none}
+    button,input,select,textarea{font:inherit}
+    button{cursor:pointer}
+    .noise{
+      position:fixed;inset:0;pointer-events:none;opacity:.07;z-index:-1;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 280 280' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.45'/%3E%3C/svg%3E");
+    }
+    .container{width:min(var(--max), calc(100% - 40px)); margin:0 auto}
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(18px);
+      border-bottom:1px solid var(--line);
+      background: color-mix(in srgb, var(--bg) 82%, transparent);
+    }
+    .nav{height:76px; display:flex; align-items:center; justify-content:space-between; gap:20px}
+    .brand{display:flex; align-items:center; gap:12px; min-width:max-content}
+    .brand-mark{
+      width:44px; height:44px; display:grid; place-items:center; border-radius:15px;
+      background:linear-gradient(135deg,var(--red),var(--purple),var(--cyan));
+      color:white; font-weight:900; box-shadow:0 12px 30px rgba(255,61,97,.25)
+    }
+    .brand strong{display:block;font-size:15px;letter-spacing:.02em}
+    .brand small{display:block;color:var(--muted);font-size:12px}
+    .nav-links{display:flex; align-items:center; gap:6px; padding:6px; border:1px solid var(--line); border-radius:999px; background:var(--glass)}
+    .nav-links a{padding:10px 13px; border-radius:999px; color:var(--muted); font-weight:700; font-size:13px}
+    .nav-links a:hover{background:var(--glass-2); color:var(--text)}
+    .nav-actions{display:flex; align-items:center; gap:10px}
+    .icon-btn,.mode-btn,.menu-btn{
+      border:1px solid var(--line); background:var(--glass); color:var(--text); border-radius:999px; height:42px; padding:0 14px; display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    }
+    .icon-btn{width:42px;padding:0}
+    .hire-btn{height:42px; padding:0 16px; border-radius:999px; background:linear-gradient(135deg,var(--red),var(--orange)); color:white; font-weight:900; box-shadow:0 14px 34px rgba(255,61,97,.22)}
+    .menu-btn{display:none;width:44px}
+    .menu-btn span{width:17px;height:2px;background:currentColor;display:block;margin:3px 0}
+
+    .hero{padding:64px 0 40px; position:relative}
+    .hero-grid{display:grid; grid-template-columns:minmax(0, 1.1fr) 400px; gap:30px; align-items:stretch}
+    .signal-card,.profile-console,.panel,.resume-card,.exp-card,.project-card,.ai-card,.contact-card{
+      border:1px solid var(--line); background:linear-gradient(145deg, color-mix(in srgb, var(--panel) 88%, transparent), color-mix(in srgb, var(--panel-2) 72%, transparent));
+      border-radius:var(--radius); box-shadow:var(--shadow); position:relative; overflow:hidden;
+    }
+    .signal-card::before,.profile-console::before,.panel::before,.exp-card::before,.project-card::before,.ai-card::before{
+      content:""; position:absolute; inset:-1px; background:linear-gradient(135deg, rgba(255,61,97,.28), rgba(32,227,255,.13), rgba(168,85,247,.20)); opacity:.55; pointer-events:none; mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); padding:1px; border-radius:inherit; -webkit-mask-composite:xor; mask-composite:exclude;
+    }
+    .signal-card{padding:38px; min-height:640px; display:flex; flex-direction:column; justify-content:space-between}
+    .availability{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line);background:var(--glass);border-radius:999px;padding:9px 14px;color:var(--soft);font-size:13px;font-weight:800;max-width:max-content}
+    .pulse{width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(73,240,168,.7);animation:pulse 1.8s infinite}
+    @keyframes pulse{70%{box-shadow:0 0 0 12px rgba(73,240,168,0)}}
+    .kicker{margin:24px 0 10px;color:var(--red);font-weight:950;letter-spacing:.18em;text-transform:uppercase;font-size:13px}
+    h1{font-size:clamp(54px, 9vw, 114px);line-height:.82;letter-spacing:-.07em;margin:0;text-transform:uppercase;font-weight:1000;}
+    .title-gradient{background:linear-gradient(90deg,#fff 0%,#ffebef 32%,#ff3d61 56%,#20e3ff 100%);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 18px 50px rgba(255,61,97,.12)}
+    [data-mode="light"] .title-gradient{background:linear-gradient(90deg,#0b1020 0%,#ff3d61 55%,#4f46e5 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .hero-subtitle{font-size:clamp(20px, 3vw, 34px); line-height:1.1; max-width:830px; margin:22px 0 18px; font-weight:900; color:var(--soft)}
+    .hero-copy{max-width:760px;color:var(--muted);font-size:17px;line-height:1.7}
+    .hero-actions{display:flex; flex-wrap:wrap; gap:12px; margin-top:24px}
+    .btn{border:0;border-radius:16px;padding:14px 18px;font-weight:950;display:inline-flex;align-items:center;gap:10px;transition:.2s transform,.2s box-shadow,.2s background}
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{background:linear-gradient(135deg,var(--red),var(--orange)); color:white; box-shadow:0 18px 36px rgba(255,61,97,.28)}
+    .btn-secondary{background:var(--glass-2);color:var(--text);border:1px solid var(--line)}
+    .btn-cyan{background:linear-gradient(135deg,var(--cyan),var(--blue));color:white;box-shadow:0 18px 36px rgba(32,227,255,.18)}
+    .hero-strip{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:34px}
+    .mini-metric{background:rgba(255,255,255,.07);border:1px solid var(--line);border-radius:20px;padding:18px;min-height:120px}
+    .mini-metric strong{display:block;font-size:32px;font-weight:1000;letter-spacing:-.06em}
+    .mini-metric span{color:var(--muted);font-size:13px;font-weight:800;line-height:1.35;display:block;margin-top:7px}
+    .mini-metric:nth-child(1) strong{color:var(--red)} .mini-metric:nth-child(2) strong{color:var(--cyan)} .mini-metric:nth-child(3) strong{color:var(--green)} .mini-metric:nth-child(4) strong{color:var(--purple)}
+
+    .profile-console{padding:24px;min-height:640px;display:flex;flex-direction:column;gap:16px}
+    .avatar-wrap{position:relative;border-radius:24px;overflow:hidden;min-height:250px;background:radial-gradient(circle at 30% 20%, rgba(255,61,97,.55), transparent 38%), linear-gradient(135deg,#171d39,#0b0f21 55%,#25080f); border:1px solid var(--line); display:grid;place-items:center}
+    .avatar-initials{font-size:92px;font-weight:1000;letter-spacing:-.1em;color:white;text-shadow:0 18px 42px rgba(0,0,0,.45)}
+    .avatar-lines{position:absolute;inset:0;background:linear-gradient(transparent 50%,rgba(255,255,255,.05) 50%);background-size:100% 9px;mix-blend-mode:screen;opacity:.35}
+    .console-title{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+    .console-title h2{margin:0;font-size:26px;line-height:1;letter-spacing:-.04em}
+    .console-title p{margin:6px 0 0;color:var(--muted);line-height:1.4}
+    .badge{border:1px solid var(--line);background:var(--glass);border-radius:999px;padding:8px 10px;color:var(--soft);font-weight:900;font-size:12px;white-space:nowrap}
+    .profile-list{display:grid;gap:10px;margin-top:4px}
+    .profile-row{display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line);padding:11px 0;color:var(--muted);font-weight:700}
+    .profile-row strong{color:var(--text);text-align:right}
+    .trait-cloud{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto}
+    .trait-cloud span{padding:8px 10px;border-radius:999px;background:var(--glass);border:1px solid var(--line);font-weight:900;font-size:12px;color:var(--soft)}
+
+    .section{padding:46px 0}
+    .section-head{display:flex; justify-content:space-between; align-items:end; gap:24px; margin-bottom:22px}
+    .eyebrow{margin:0 0 8px;color:var(--red);text-transform:uppercase;letter-spacing:.16em;font-weight:1000;font-size:12px}
+    h2{margin:0;font-size:clamp(34px,5vw,64px);line-height:.94;letter-spacing:-.055em}
+    .section-head p:last-child{color:var(--muted);max-width:540px;line-height:1.65;margin:0}
+
+    .proof-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:22px}
+    .panel{padding:28px}
+    .panel h3{font-size:26px;margin:0 0 12px;letter-spacing:-.035em}
+    .panel p{color:var(--muted);line-height:1.65;margin:0 0 16px}
+    .proof-lanes{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:18px}
+    .lane{border:1px solid var(--line);background:var(--glass);border-radius:18px;padding:16px}
+    .lane strong{display:block;font-size:18px;margin-bottom:8px}
+    .lane span{color:var(--muted);font-size:13px;line-height:1.45;display:block}
+    .lane:nth-child(1){border-color:rgba(255,61,97,.35)} .lane:nth-child(2){border-color:rgba(32,227,255,.35)} .lane:nth-child(3){border-color:rgba(73,240,168,.35)} .lane:nth-child(4){border-color:rgba(168,85,247,.35)}
+
+    .resume-map{display:grid;grid-template-columns:260px minmax(0,1fr);gap:18px}
+    .map-tabs{position:sticky;top:96px;align-self:start;border:1px solid var(--line);border-radius:var(--radius);padding:12px;background:var(--panel);box-shadow:var(--shadow)}
+    .tab-btn{width:100%;text-align:left;border:0;background:transparent;color:var(--muted);padding:14px;border-radius:16px;font-weight:950;display:flex;justify-content:space-between;gap:10px}
+    .tab-btn.active{background:linear-gradient(135deg,rgba(255,61,97,.22),rgba(32,227,255,.12));color:var(--text)}
+    .tab-panel{display:none}.tab-panel.active{display:block;animation:fade .28s ease}.fade-in{animation:fade .28s ease}@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+    .resume-card{padding:26px;margin-bottom:16px}
+    .resume-card h3{font-size:30px;margin:0 0 10px;letter-spacing:-.04em}
+    .resume-card p,.resume-card li{color:var(--muted);line-height:1.6}
+    .resume-card ul{margin:14px 0 0;padding-left:20px}
+    .resume-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
+    .resume-metrics div{padding:16px;border:1px solid var(--line);background:var(--glass);border-radius:18px}
+    .resume-metrics strong{display:block;font-size:25px;letter-spacing:-.04em}.resume-metrics span{color:var(--muted);font-size:12px;font-weight:800}
+    .skills-toolbar{display:flex;gap:10px;margin:0 0 16px;flex-wrap:wrap}.search{flex:1;min-width:240px;border:1px solid var(--line);background:var(--glass);color:var(--text);padding:13px 15px;border-radius:16px;outline:none}.search::placeholder{color:var(--muted)}
+    .skill-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.skill-card{border:1px solid var(--line);background:var(--glass);border-radius:20px;padding:18px}.skill-card h4{font-size:18px;margin:0 0 12px}.chips{display:flex;flex-wrap:wrap;gap:8px}.chips span{border:1px solid var(--line);background:rgba(255,255,255,.07);border-radius:999px;padding:8px 10px;font-size:12px;font-weight:900;color:var(--soft)}
+
+    .experience-list{display:grid;gap:16px}
+    .exp-card{display:grid;grid-template-columns:180px minmax(0,1fr);gap:20px;padding:20px}
+    .exp-poster{border-radius:20px;min-height:190px;background:linear-gradient(135deg,#141b35,#0b1023);border:1px solid var(--line);position:relative;overflow:hidden;padding:16px;display:flex;flex-direction:column;justify-content:space-between}
+    .exp-poster::after{content:"";position:absolute;inset:auto -40px -60px auto;width:150px;height:150px;background:var(--poster-color, var(--red));filter:blur(30px);opacity:.45;border-radius:50%}
+    .poster-code{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace;color:var(--muted);font-size:12px;line-height:1.7}
+    .poster-title{font-size:34px;font-weight:1000;line-height:.85;letter-spacing:-.08em;position:relative;z-index:1}.poster-title small{display:block;font-size:12px;letter-spacing:.12em;margin-top:8px;color:var(--muted)}
+    .exp-content h3{font-size:24px;margin:0 0 5px;letter-spacing:-.035em}.exp-meta{display:flex;gap:10px;flex-wrap:wrap;color:var(--muted);font-weight:850;font-size:13px}.exp-content ul{margin:13px 0 0;padding-left:19px}.exp-content li{color:var(--muted);line-height:1.5;margin:5px 0}.exp-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.small-btn{border:1px solid var(--line);background:var(--glass);color:var(--text);padding:8px 10px;border-radius:999px;font-weight:900;font-size:12px}
+    .more-bullets{display:none}.exp-card.expanded .more-bullets{display:list-item}.exp-card.expanded .hide-when-expanded{display:none}
+
+    .project-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.project-card{min-height:270px;padding:22px;display:flex;flex-direction:column;justify-content:space-between}.project-card h3{font-size:25px;margin:0;letter-spacing:-.04em}.project-card p{color:var(--muted);line-height:1.55}.project-top{display:flex;justify-content:space-between;gap:12px;align-items:start}.project-num{font-size:42px;font-weight:1000;letter-spacing:-.07em;color:var(--card-color,var(--red))}.project-card .chips span{font-size:11px;padding:7px 9px}
+    .ai-layout{display:grid;grid-template-columns:1fr 360px;gap:18px}.ai-card{padding:24px}.ai-card h3{font-size:28px;margin:0 0 10px;letter-spacing:-.04em}.ai-card p{color:var(--muted);line-height:1.6}.role-selector{width:100%;border:1px solid var(--line);background:var(--glass);color:var(--text);border-radius:16px;padding:13px;margin:10px 0 14px}.match-meter{height:12px;background:var(--glass);border-radius:999px;overflow:hidden;border:1px solid var(--line);margin:16px 0}.match-meter span{display:block;height:100%;width:92%;background:linear-gradient(90deg,var(--green),var(--cyan),var(--purple));border-radius:inherit;transition:.3s}.match-score{font-size:54px;font-weight:1000;letter-spacing:-.08em}.chat-box{border:1px solid var(--line);background:rgba(0,0,0,.16);border-radius:20px;padding:14px;min-height:168px;display:grid;gap:10px;align-content:start}.msg{padding:11px 13px;border-radius:14px;line-height:1.45;color:var(--soft);background:var(--glass)}.prompt-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+
+    .contact-layout{display:grid;grid-template-columns:1fr 380px;gap:18px}.contact-card{padding:24px}.contact-card h3{font-size:30px;margin:0 0 10px;letter-spacing:-.04em}.contact-grid{display:grid;gap:12px;margin-top:14px}.contact-row{display:flex;justify-content:space-between;gap:12px;border:1px solid var(--line);background:var(--glass);border-radius:18px;padding:14px}.contact-row span{color:var(--muted)}.form{display:grid;gap:12px}.form input,.form textarea,.form select{width:100%;border:1px solid var(--line);background:var(--glass);color:var(--text);padding:13px;border-radius:15px;outline:none}.form textarea{min-height:130px;resize:vertical}
+
+    .modal{position:fixed;inset:0;z-index:200;display:none;place-items:center;background:rgba(0,0,0,.72);backdrop-filter:blur(12px);padding:20px}.modal.show{display:grid}.modal-card{width:min(780px,100%);max-height:86vh;overflow:auto;border:1px solid var(--line);background:var(--panel);border-radius:28px;box-shadow:var(--shadow);padding:28px}.modal-head{display:flex;justify-content:space-between;gap:12px;margin-bottom:16px}.close{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--glass);color:var(--text);font-size:22px}.modal-card h3{font-size:34px;margin:0}.modal-card p,.modal-card li{color:var(--muted);line-height:1.6}
+    .toast{position:fixed;right:20px;bottom:20px;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:13px 15px;box-shadow:var(--shadow);display:none;z-index:220;font-weight:900}.toast.show{display:block;animation:fade .2s ease}
+    .cmdk{position:fixed;inset:0;z-index:180;display:none;place-items:start center;background:rgba(0,0,0,.58);backdrop-filter:blur(10px);padding-top:100px}.cmdk.show{display:grid}.cmdk-card{width:min(650px,calc(100% - 34px));border:1px solid var(--line);background:var(--panel);box-shadow:var(--shadow);border-radius:24px;padding:14px}.cmdk input{width:100%;border:0;background:var(--glass);color:var(--text);padding:16px;border-radius:16px;outline:none;font-size:18px}.cmdk-list{display:grid;gap:6px;margin-top:12px}.cmdk-item{border:0;background:transparent;color:var(--text);padding:13px;border-radius:14px;text-align:left;font-weight:900}.cmdk-item:hover{background:var(--glass)}
+    .footer{padding:32px 0 50px;color:var(--muted);text-align:center}
+
+    @media(max-width:1050px){
+      .hero-grid,.proof-grid,.ai-layout,.contact-layout{grid-template-columns:1fr}.profile-console{min-height:auto}.signal-card{min-height:auto}.hero-strip,.resume-metrics{grid-template-columns:repeat(2,1fr)}.resume-map{grid-template-columns:1fr}.map-tabs{position:relative;top:auto;display:flex;overflow:auto}.tab-btn{min-width:max-content}.project-grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media(max-width:780px){
+      .container{width:min(100% - 26px, var(--max))}.nav{height:auto;min-height:70px}.menu-btn{display:inline-flex;flex-direction:column;padding:0}.nav-links{position:fixed;left:13px;right:13px;top:78px;display:none;flex-direction:column;border-radius:22px;padding:12px;background:var(--panel);box-shadow:var(--shadow)}.nav-links.open{display:flex}.nav-links a{width:100%;text-align:center}.nav-actions .hire-btn{display:none}.hero{padding-top:32px}.signal-card{padding:24px}.hero-strip,.proof-lanes,.skill-grid,.project-grid,.resume-metrics{grid-template-columns:1fr}.exp-card{grid-template-columns:1fr}.section-head{display:block}.section-head p:last-child{margin-top:12px}.hero-subtitle{font-size:22px}.contact-row{display:block}.contact-row strong{display:block;margin-top:6px}.project-card{min-height:230px}
+    }
+    @media print{
+      .topbar,.hero-actions,.map-tabs,.prompt-row,.form,.cmdk,.modal,.toast,.icon-btn,.mode-btn,.hire-btn,.menu-btn{display:none!important}
+      body{background:white;color:#111}.signal-card,.profile-console,.panel,.resume-card,.exp-card,.project-card,.ai-card,.contact-card{box-shadow:none;border:1px solid #ddd;background:white;color:#111;break-inside:avoid}.section{padding:16px 0}.hero{padding:10px 0}.container{width:100%}.hero-grid,.proof-grid,.resume-map,.ai-layout,.contact-layout{grid-template-columns:1fr}.profile-console{min-height:auto}.signal-card{min-height:auto} .title-gradient{color:#111;background:none;-webkit-text-fill-color:#111}.resume-card p,.resume-card li,.exp-content li,.panel p,.project-card p,.ai-card p{color:#333}
+    }
+  </style>
+</head>
+<body>
+  <div class="noise"></div>
+  <header class="topbar">
+    <nav class="nav container">
+      <a class="brand" href="#top" aria-label="Home">
+        <span class="brand-mark">VS</span>
+        <span><strong>Venktesh.dev</strong><small>ProofOS Portfolio</small></span>
+      </a>
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      <div class="nav-links" id="navLinks">
+        <a href="#proof">Proof</a><a href="#resume">Resume OS</a><a href="#experience">Experience</a><a href="#ai">AI Work</a><a href="#projects">Projects</a><a href="#contact">Contact</a>
+      </div>
+      <div class="nav-actions">
+        <button class="icon-btn" id="cmdBtn" title="Command palette">⌘</button>
+        <button class="mode-btn" id="modeBtn">Light</button>
+        <a href="#contact" class="hire-btn">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <article class="signal-card">
+          <div>
+            <div class="availability"><span class="pulse"></span>Available for Full Stack • Frontend • Cloud • AI Engineering roles</div>
+            <p class="kicker">2026 Signal Portfolio</p>
+            <h1><span class="title-gradient">Venktesh<br>Sharma</span></h1>
+            <p class="hero-subtitle">A software engineer presented as a product: proof, systems, AI workflows, cloud delivery, and execution.</p>
+            <p class="hero-copy">Full Stack Software Engineer with 5+ years of experience building enterprise-grade web applications across financial services, healthcare, and retail. Strong in React.js, Node.js, TypeScript, Python, REST/GraphQL APIs, Socket.io real-time systems, AWS/Azure, Docker, Kubernetes, Jenkins, and Terraform.</p>
+            <div class="hero-actions">
+              <button class="btn btn-primary" id="openResume">▶ View Résumé</button>
+              <a class="btn btn-secondary" href="#experience">Explore Experience</a>
+              <button class="btn btn-cyan" id="copyPitch">Copy Recruiter Pitch</button>
+            </div>
+          </div>
+          <div class="hero-strip">
+            <div class="mini-metric"><strong>5+</strong><span>Years enterprise software engineering</span></div>
+            <div class="mini-metric"><strong>AI</strong><span>LLM onboarding, model workflows, governance</span></div>
+            <div class="mini-metric"><strong>AWS</strong><span>Certified Solutions Architect Associate</span></div>
+            <div class="mini-metric"><strong>4</strong><span>Domains: finance, healthcare, retail, enterprise AI</span></div>
+          </div>
+        </article>
+
+        <aside class="profile-console">
+          <div class="avatar-wrap"><div class="avatar-lines"></div><div class="avatar-initials">VS</div></div>
+          <div class="console-title">
+            <div><h2>Candidate Console</h2><p>Not a resume page. A proof system for hiring teams.</p></div>
+            <span class="badge">Dallas, TX</span>
+          </div>
+          <div class="profile-list">
+            <div class="profile-row"><span>Name</span><strong>Venktesh Sharma</strong></div>
+            <div class="profile-row"><span>Role</span><strong>Full Stack Software Engineer</strong></div>
+            <div class="profile-row"><span>Email</span><strong>venktesharma.19@gmail.com</strong></div>
+            <div class="profile-row"><span>Phone</span><strong>(469) 708-8895</strong></div>
+            <div class="profile-row"><span>Education</span><strong>Master’s in Computer & Information Science</strong></div>
+          </div>
+          <div class="trait-cloud"><span>React.js</span><span>Node.js</span><span>TypeScript</span><span>Python</span><span>AWS</span><span>Azure</span><span>OpenShift</span><span>AI/LLM</span></div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="proof">
+      <div class="container">
+        <div class="section-head">
+          <div><p class="eyebrow">Fresh Approach</p><h2>Proof over portfolio.</h2></div>
+          <p>This site is designed for a chaotic job market where recruiters skim fast. It turns your resume into a signal system: what you build, where you have impact, and why your profile is relevant now.</p>
+        </div>
+        <div class="proof-grid">
+          <article class="panel">
+            <h3>Career Narrative</h3>
+            <p>You are positioned as a full-stack engineer who can move between UI, APIs, cloud, DevOps, and AI-enabled enterprise workflows. That gives your profile a stronger story than “React developer” alone.</p>
+            <div class="proof-lanes">
+              <div class="lane"><strong>Frontend Product</strong><span>React, TypeScript, Redux, Material UI, SPFx, responsive UI, reusable components.</span></div>
+              <div class="lane"><strong>Backend Systems</strong><span>Node, Express, Flask, REST, GraphQL, Socket.io, Python microservices, validation.</span></div>
+              <div class="lane"><strong>Cloud Delivery</strong><span>AWS, Azure, Docker, Kubernetes, OpenShift, Jenkins, GitLab CI, Terraform.</span></div>
+              <div class="lane"><strong>AI Enterprise</strong><span>LLM onboarding, Hugging Face repositories, MinIO, metadata validation, governance.</span></div>
+            </div>
+          </article>
+          <article class="panel">
+            <h3>Why this stands out</h3>
+            <p>Most portfolio sites show a photo, a paragraph, and random project cards. This one shows your resume as a working system: recruiter pitch, proof cards, searchable skills, expandable experience, AI role match, and print-ready resume view.</p>
+            <div class="proof-lanes">
+              <div class="lane"><strong>Scan fast</strong><span>Hero summary, metric cards, role fit, and domain proof are visible immediately.</span></div>
+              <div class="lane"><strong>Go deep</strong><span>Hiring managers can expand experience cards to see actual technical bullets.</span></div>
+              <div class="lane"><strong>AI-ready</strong><span>Your current Bank of America AI/LLM work is treated as a premium differentiator.</span></div>
+              <div class="lane"><strong>Actionable</strong><span>Contact, copy pitch, save PDF, and command palette are built in.</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="resume">
+      <div class="container">
+        <div class="section-head">
+          <div><p class="eyebrow">Resume OS</p><h2>Your resume as an interactive system.</h2></div>
+          <p>Switch between summary, skills, certification, and education without making the page feel like a plain Word document.</p>
+        </div>
+        <div class="resume-map">
+          <aside class="map-tabs" aria-label="Resume tabs">
+            <button class="tab-btn active" data-tab="summary">Summary <span>01</span></button>
+            <button class="tab-btn" data-tab="skills">Skills Matrix <span>02</span></button>
+            <button class="tab-btn" data-tab="certs">Cert + Education <span>03</span></button>
+            <button class="tab-btn" data-tab="rolefit">Role Fit <span>04</span></button>
+          </aside>
+          <div class="map-content">
+            <article class="tab-panel active" id="summary">
+              <div class="resume-card">
+                <h3>Professional Summary</h3>
+                <p>Full Stack Software Engineer with 5+ years of experience building and scaling enterprise-grade web applications across financial services, healthcare, and retail domains. Proficient in React.js, Node.js, TypeScript, and Python, with deep expertise in RESTful and GraphQL APIs, real-time systems using Socket.io, and cloud-native development on AWS and Azure.</p>
+                <div class="resume-metrics"><div><strong>5+</strong><span>Years</span></div><div><strong>3+</strong><span>Cloud/DevOps stacks</span></div><div><strong>4</strong><span>Enterprise domains</span></div><div><strong>AWS</strong><span>Certified</span></div></div>
+              </div>
+              <div class="resume-card"><h3>Core Positioning</h3><ul><li>Enterprise web applications across Bank of America, Floor & Décor, Baylor Scott & White Health, and Barclays.</li><li>Strong full-stack scope: UI systems, REST/GraphQL APIs, real-time messaging, cloud deployments, DevOps, testing, and observability.</li><li>AI/LLM onboarding and model lifecycle workflows for enterprise AI platforms.</li></ul></div>
+            </article>
+            <article class="tab-panel" id="skills">
+              <div class="resume-card">
+                <h3>Searchable Skills Matrix</h3>
+                <div class="skills-toolbar"><input class="search" id="skillSearch" placeholder="Search skills: React, AWS, GraphQL, OpenShift..." /><button class="btn btn-secondary" id="copySkills">Copy Skills</button></div>
+                <div class="skill-grid" id="skillGrid"></div>
+              </div>
+            </article>
+            <article class="tab-panel" id="certs">
+              <div class="resume-card"><h3>Certification</h3><p><strong>AWS Certified Solutions Architect - Associate</strong></p></div>
+              <div class="resume-card"><h3>Education</h3><p><strong>Master’s in Computer and Information Science</strong></p></div>
+              <div class="resume-card"><h3>Operating Environment</h3><p>Windows, Linux, Unix, Agile, Scrum, Git, OAuth 2.0, JWT, RBAC, Stripe API, object storage with MinIO and AWS S3.</p></div>
+            </article>
+            <article class="tab-panel" id="rolefit">
+              <div class="resume-card"><h3>Best-Fit Roles</h3><ul><li>Full Stack Software Engineer — React, Node.js, APIs, databases, cloud delivery.</li><li>Frontend React Engineer — TypeScript, Redux, SPFx, Material UI, responsive UI systems.</li><li>AI Platform / AI Tooling Engineer — LLM onboarding, model registration, governance workflow UI, Python APIs.</li><li>Cloud Application Engineer — AWS/Azure, Docker, Kubernetes, OpenShift, Terraform, Jenkins.</li></ul></div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="experience">
+      <div class="container">
+        <div class="section-head">
+          <div><p class="eyebrow">Experience Proof</p><h2>Work history as proof cards.</h2></div>
+          <p>Each role has a domain, technical signal, and expandable detail. This keeps the design clean while still covering the resume.</p>
+        </div>
+        <div class="experience-list" id="experienceList"></div>
+      </div>
+    </section>
+
+    <section class="section" id="ai">
+      <div class="container">
+        <div class="section-head">
+          <div><p class="eyebrow">AI-Era Signal</p><h2>AI work without buzzword stuffing.</h2></div>
+          <p>Your AI story is strongest when shown as enterprise product work: onboarding workflows, model metadata, artifact validation, governance, secure storage, and deployment readiness.</p>
+        </div>
+        <div class="ai-layout">
+          <article class="ai-card">
+            <h3>AI / LLM Onboarding Workflows</h3>
+            <p>At Bank of America, you worked on AI-enabled business applications and onboarding workflows for automated model registration, metadata validation, deployment readiness, lifecycle management, and governance compliance. You also integrated Hugging Face repositories, MinIO object storage, and enterprise systems for artifact ingestion and model distribution.</p>
+            <div class="proof-lanes"><div class="lane"><strong>Model Registry</strong><span>Registration, versioning, audit logging, metadata validation.</span></div><div class="lane"><strong>Artifact Flow</strong><span>Hugging Face, MinIO, dependency verification, packaging.</span></div><div class="lane"><strong>Governance</strong><span>RBAC, compliance procedures, audit tracking.</span></div><div class="lane"><strong>Delivery</strong><span>SPFx, Power Platform, Python APIs, OpenShift/Kubernetes.</span></div></div>
+          </article>
+          <aside class="ai-card">
+            <h3>Role Match</h3>
+            <select class="role-selector" id="roleSelect"><option value="fullstack">Full Stack Engineer</option><option value="frontend">Frontend React Engineer</option><option value="ai">AI Platform / Tooling Engineer</option><option value="cloud">Cloud Application Engineer</option></select>
+            <div class="match-score" id="matchScore">94%</div><div class="match-meter"><span id="matchBar"></span></div><p id="matchText">Strong match because your resume combines React, Node.js, Python APIs, cloud-native delivery, and enterprise AI workflows.</p>
+          </aside>
+        </div>
+        <div class="ai-card" style="margin-top:18px">
+          <h3>Portfolio Assistant Demo</h3>
+          <div class="chat-box" id="chatBox"><div class="msg">Click a prompt below to generate a recruiter-style answer from your resume data.</div></div>
+          <div class="prompt-row"><button class="small-btn prompt" data-prompt="react">Why React roles?</button><button class="small-btn prompt" data-prompt="ai">Why AI tooling?</button><button class="small-btn prompt" data-prompt="cloud">Why cloud roles?</button><button class="small-btn prompt" data-prompt="domains">What domains?</button></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section-head"><div><p class="eyebrow">Selected Systems</p><h2>Projects shown as product signals.</h2></div><p>These cards highlight the kind of systems behind your resume: AI governance, commerce, clinical real-time messaging, finance automation, and cloud delivery.</p></div>
+        <div class="project-grid" id="projectGrid"></div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-head"><div><p class="eyebrow">Contact</p><h2>Make the recruiter action easy.</h2></div><p>Everything a hiring team needs is one click away: email, phone, copy pitch, and print-ready resume.</p></div>
+        <div class="contact-layout">
+          <article class="contact-card"><h3>Contact Details</h3><div class="contact-grid"><div class="contact-row"><span>Email</span><strong>venktesharma.19@gmail.com</strong></div><div class="contact-row"><span>Phone</span><strong>(469) 708-8895</strong></div><div class="contact-row"><span>Location</span><strong>Dallas, TX</strong></div><div class="contact-row"><span>Target</span><strong>Full Stack • Frontend • Cloud • AI Tooling</strong></div></div><div class="hero-actions"><button class="btn btn-primary" onclick="window.print()">Save as PDF</button><button class="btn btn-secondary" id="copyContact">Copy Contact</button></div></article>
+          <article class="contact-card"><h3>Message Form Demo</h3><form class="form" id="contactForm"><input required placeholder="Your name"><input type="email" required placeholder="name@company.com"><select><option>Full Stack Engineer</option><option>Frontend React Engineer</option><option>AI Platform / Tooling Engineer</option><option>Cloud Application Engineer</option></select><textarea required placeholder="Tell me about the opportunity..."></textarea><button class="btn btn-primary" type="submit">Send Demo Message</button></form></article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer container">Built as ProofOS — a fresh resume portfolio system for Venktesh Sharma.</footer>
+
+  <div class="modal" id="resumeModal"><div class="modal-card"><div class="modal-head"><div><p class="eyebrow">Resume Preview</p><h3>Venktesh Sharma</h3></div><button class="close" id="closeModal">×</button></div><p><strong>Full Stack Software Engineer</strong> based in Dallas, TX with 5+ years across enterprise web applications, AI-enabled systems, healthcare, retail, and financial services.</p><ul><li>React.js, Redux, TypeScript, Material UI, SPFx, responsive UI systems.</li><li>Node.js, Express.js, Flask, REST APIs, GraphQL, Socket.io, Python microservices.</li><li>AWS, Azure, Docker, Kubernetes, OpenShift, Terraform, Jenkins, GitLab CI.</li><li>AI/LLM onboarding, metadata validation, Hugging Face, MinIO, RBAC, governance compliance.</li></ul><button class="btn btn-primary" onclick="window.print()">Save Resume as PDF</button></div></div>
+  <div class="cmdk" id="cmdk"><div class="cmdk-card"><input id="cmdInput" placeholder="Jump to: proof, resume, experience, AI, projects, contact..." /><div class="cmdk-list"><button class="cmdk-item" data-jump="proof">Proof System</button><button class="cmdk-item" data-jump="resume">Resume OS</button><button class="cmdk-item" data-jump="experience">Experience</button><button class="cmdk-item" data-jump="ai">AI Work</button><button class="cmdk-item" data-jump="projects">Projects</button><button class="cmdk-item" data-jump="contact">Contact</button></div></div></div>
+  <div class="toast" id="toast">Copied</div>
+
+  <script>
+    const skills = [
+      {group:'Programming', items:['JavaScript','TypeScript','Python']},
+      {group:'Frontend', items:['React.js','Redux','Redux Toolkit','HTML5','CSS3','Material-UI','Axios','Figma','SPFx']},
+      {group:'Backend', items:['Node.js','Express.js','Flask','Socket.io','REST APIs','GraphQL','Mongoose','RabbitMQ','Python Microservices']},
+      {group:'Databases', items:['PostgreSQL','MySQL','MongoDB','Microsoft SQL Server','Redis','AWS Aurora']},
+      {group:'Cloud & DevOps', items:['AWS Lambda','API Gateway','S3','EC2','Azure App Service','OpenShift','Docker','Kubernetes','Terraform','Jenkins','GitLab CI']},
+      {group:'Testing & Quality', items:['Jest','Selenium','Supertest','Validation','Root-Cause Analysis']},
+      {group:'Monitoring', items:['Grafana','ELK Stack','Prometheus','Operational Dashboards']},
+      {group:'Security & Governance', items:['OAuth 2.0','JWT','RBAC','Audit Tracking','Metadata Validation','Compliance Workflows']},
+      {group:'Storage & Tools', items:['MinIO','AWS S3','Git','Agile','Scrum','Stripe API']}
+    ];
+    const experiences = [
+      {company:'Bank of America', role:'Full Stack Software Engineer', date:'04/2025 - Present', domain:'Enterprise AI + Intranet Platforms', color:'#ff3d61', code:'AI\nSPFx\nPY', bullets:[
+        'Designed and developed enterprise intranet portals and AI-enabled business applications using SharePoint Online, SPFx with React/TypeScript, Power Platform, Python, and REST APIs.',
+        'Built responsive SPFx web parts integrated with Microsoft Graph API, SharePoint REST API, and enterprise data sources.',
+        'Developed AI/LLM onboarding workflows for model registration, metadata validation, deployment readiness, lifecycle management, and governance compliance.',
+        'Integrated Hugging Face repositories, MinIO object storage, and internal enterprise systems for secure artifact ingestion, model distribution, access control, and monitoring.',
+        'Built Power Apps and Power Automate workflows for approval management, document routing, notifications, orchestration, and business process automation.',
+        'Created Python-based microservices and RESTful APIs for model packaging, artifact validation, dependency verification, onboarding automation, and enterprise integrations.',
+        'Supported OpenShift and Kubernetes deployments, improving scalability, stability, deployment automation, and operational reliability.'
+      ]},
+      {company:'Floor & Décor', role:'Frontend Developer', date:'04/2023 - 03/2025', domain:'Retail Commerce Platform', color:'#20e3ff', code:'ECOM\nUI\nAWS', bullets:[
+        'Worked on a platform using React, Node.js, and Express with payment integration, product management, and order tracking features.',
+        'Implemented secure payment gateway workflows using Stripe API and REST APIs for product catalog, orders, and authentication.',
+        'Used MongoDB and AWS Aurora PostgreSQL for efficient data storage and retrieval.',
+        'Created reusable React components with TypeScript, Redux, and responsive UI patterns for a seamless user experience.',
+        'Applied Redis caching, Jest/Selenium testing, Docker/Kubernetes deployments, Jenkins automation, and monitoring with Grafana/ELK/Prometheus.',
+        'Managed AWS Lambda, API Gateway, RabbitMQ, GraphQL, Terraform, Ansible, Nginx load balancing, AWS Auto Scaling, and D3.js visualizations.'
+      ]},
+      {company:'Baylor Scott & White Health', role:'Full Stack Software Engineer', date:'02/2022 - 03/2023', domain:'Healthcare Real-Time Communication', color:'#49f0a8', code:'CHAT\nSOCK\nAZ', bullets:[
+        'Engineered a real-time patient-provider communication platform using Socket.io and Node.js for an enterprise-grade clinical chat system.',
+        'Built REST APIs for chat history, authentication, message status updates, payload validation, error handling, and RBAC.',
+        'Decomposed monolithic backend modules into independently deployable microservices across authentication, messaging, and notifications.',
+        'Implemented Socket.io event-driven architecture, connection lifecycle management, reconnection strategies, typing indicators, presence detection, and message ordering.',
+        'Developed React.js and TypeScript chat components with Redux, Context API, Reselect, lazy loading, and MongoDB/Mongoose schemas.',
+        'Implemented JWT authentication, input validation, Jest tests, end-to-end testing, Azure App Service deployment, and Azure DevOps CI/CD pipelines.'
+      ]},
+      {company:'Barclays Investment Bank', role:'Software Engineer', date:'10/2020 - 10/2021', domain:'Financial Services Invoicing', color:'#a855f7', code:'FIN\nAPI\nAWS', bullets:[
+        'Enhanced an enterprise invoicing application to support multi-currency billing for global clients.',
+        'Implemented real-time currency conversion using Open Exchange Rates APIs with retry/fallback logic and outage validation.',
+        'Built React UI controls for currency selection and invoice preview with consistent formatting and accurate totals.',
+        'Developed Node.js REST APIs for authentication and invoicing workflows with standardized error handling and input validation.',
+        'Secured customer and invoice data in PostgreSQL Aurora/RDS using encryption and access controls aligned with financial compliance requirements.',
+        'Deployed services on AWS EC2/S3 and implemented Lambda automation for invoice generation and notifications.'
+      ]}
+    ];
+    const projects = [
+      {title:'AI Model Onboarding System', color:'#ff3d61', text:'Enterprise AI workflows for model registration, metadata validation, artifact ingestion, lifecycle management, governance compliance, and deployment readiness.', tags:['AI/LLM','Python','SPFx','MinIO','RBAC']},
+      {title:'Retail Commerce Platform', color:'#20e3ff', text:'React + Node commerce platform with payment integration, product management, order tracking, Stripe, Redis caching, AWS services, and CI/CD.', tags:['React','Node','Stripe','AWS','Redis']},
+      {title:'Clinical Real-Time Chat', color:'#49f0a8', text:'Socket.io patient-provider communication system with real-time delivery, presence indicators, RBAC, MongoDB persistence, and Azure deployment.', tags:['Socket.io','React','MongoDB','Azure','JWT']},
+      {title:'Financial Invoicing App', color:'#a855f7', text:'Multi-currency enterprise invoicing application with React UI, Node APIs, PostgreSQL/Aurora, AWS Lambda automation, and compliance-aware controls.', tags:['React','Node','PostgreSQL','AWS','Finance']},
+      {title:'Cloud Delivery Pipeline', color:'#ff9f43', text:'Deployment and reliability workflow using Docker, Kubernetes, OpenShift, Jenkins, GitLab CI, Terraform, Prometheus, Grafana, and ELK.', tags:['Docker','K8s','Jenkins','Terraform','Monitoring']},
+      {title:'ProofOS Portfolio', color:'#6384ff', text:'A fresh resume portfolio system that turns your profile into an interactive proof engine for recruiters and engineering managers.', tags:['Portfolio','UX','Resume OS','2026']}
+    ];
+    const roleData = {
+      fullstack:{score:94,text:'Strong match because your profile combines React, Node.js, TypeScript, Python APIs, databases, cloud deployment, testing, and enterprise delivery.'},
+      frontend:{score:91,text:'Strong frontend match through React.js, TypeScript, Redux, Material UI, SPFx, responsive components, Figma collaboration, and UI performance work.'},
+      ai:{score:89,text:'Strong AI tooling match because of your Bank of America AI/LLM onboarding, Hugging Face repository integration, MinIO, metadata validation, governance, and Python API work.'},
+      cloud:{score:90,text:'Strong cloud application match through AWS, Azure, Docker, Kubernetes, OpenShift, Jenkins, GitLab CI, Terraform, monitoring, and production troubleshooting.'}
+    };
+    const promptData = {
+      react:'Venktesh is a strong React candidate because he has built enterprise UI systems using React.js, TypeScript, Redux, Material UI, SPFx web parts, reusable components, and performance-focused frontend patterns across banking, healthcare, and retail systems.',
+      ai:'His AI signal comes from enterprise AI/LLM onboarding workflows: model registration, metadata validation, deployment readiness, lifecycle management, governance compliance, Hugging Face integration, MinIO storage, and Python microservices.',
+      cloud:'His cloud strength is practical: AWS Lambda, API Gateway, S3, EC2, Azure App Service, Docker, Kubernetes, OpenShift, Terraform, Jenkins, GitLab CI, Grafana, ELK, and Prometheus.',
+      domains:'His domain range covers financial services, healthcare, retail commerce, and enterprise AI platforms, which makes him easier to position for product engineering and enterprise modernization roles.'
+    };
+    const pitch = 'Venktesh Sharma is a Full Stack Software Engineer with 5+ years of experience across financial services, healthcare, retail, and enterprise AI platforms. He brings React.js, TypeScript, Node.js, Python, REST/GraphQL APIs, Socket.io, AWS/Azure, Docker, Kubernetes, Jenkins, Terraform, and AI/LLM onboarding experience with model governance and artifact workflows.';
+    const contactText = 'Venktesh Sharma | Full Stack Software Engineer | Dallas, TX | venktesharma.19@gmail.com | (469) 708-8895';
+
+    function showToast(text='Copied'){ const t=document.getElementById('toast'); t.textContent=text; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),1800); }
+    function copyText(text,msg){ navigator.clipboard?.writeText(text).then(()=>showToast(msg)).catch(()=>showToast('Copy not available')); }
+    function renderSkills(filter=''){
+      const target=document.getElementById('skillGrid'); if(!target) return;
+      const q=filter.toLowerCase().trim(); target.innerHTML='';
+      skills.forEach(s=>{
+        const items=s.items.filter(i=>!q || i.toLowerCase().includes(q) || s.group.toLowerCase().includes(q));
+        if(!items.length) return;
+        const card=document.createElement('div'); card.className='skill-card fade-in';
+        card.innerHTML='<h4>'+s.group+'</h4><div class="chips">'+items.map(i=>'<span>'+i+'</span>').join('')+'</div>';
+        target.appendChild(card);
+      });
+    }
+    function renderExperiences(){
+      const target=document.getElementById('experienceList'); if(!target) return;
+      target.innerHTML=experiences.map((e,idx)=>`<article class="exp-card" style="--poster-color:${e.color}"><div class="exp-poster"><div class="poster-code">${e.code.replace(/\n/g,'<br>')}</div><div class="poster-title">${String(idx+1).padStart(2,'0')}<small>${e.domain}</small></div></div><div class="exp-content"><h3>${e.company} — ${e.role}</h3><div class="exp-meta"><span>${e.date}</span><span>•</span><span>${e.domain}</span></div><ul>${e.bullets.map((b,i)=>`<li class="${i>2?'more-bullets':''}">${b}</li>`).join('')}</ul><div class="exp-actions"><button class="small-btn expand-btn">Show full details</button><button class="small-btn copy-role" data-copy="${e.company.replace(/"/g,'&quot;')} — ${e.role}: ${e.bullets.slice(0,3).join(' ')}">Copy role proof</button></div></div></article>`).join('');
+      document.querySelectorAll('.expand-btn').forEach(btn=>btn.addEventListener('click',()=>{ const card=btn.closest('.exp-card'); card.classList.toggle('expanded'); btn.textContent=card.classList.contains('expanded')?'Hide details':'Show full details'; }));
+      document.querySelectorAll('.copy-role').forEach(btn=>btn.addEventListener('click',()=>copyText(btn.dataset.copy,'Role proof copied')));
+    }
+    function renderProjects(){
+      const target=document.getElementById('projectGrid'); if(!target) return;
+      target.innerHTML=projects.map((p,i)=>`<article class="project-card" style="--card-color:${p.color}"><div class="project-top"><div><span class="eyebrow">System ${String(i+1).padStart(2,'0')}</span><h3>${p.title}</h3></div><span class="project-num">${String(i+1).padStart(2,'0')}</span></div><p>${p.text}</p><div class="chips">${p.tags.map(t=>`<span>${t}</span>`).join('')}</div></article>`).join('');
+    }
+    document.addEventListener('DOMContentLoaded',()=>{
+      renderSkills(); renderExperiences(); renderProjects();
+      const body=document.body;
+      document.getElementById('modeBtn').addEventListener('click',()=>{ const light=body.getAttribute('data-mode')==='light'; body.setAttribute('data-mode', light?'dark':'light'); document.getElementById('modeBtn').textContent=light?'Light':'Dark'; });
+      document.getElementById('menuBtn').addEventListener('click',()=>document.getElementById('navLinks').classList.toggle('open'));
+      document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>document.getElementById('navLinks').classList.remove('open')));
+      document.querySelectorAll('.tab-btn').forEach(btn=>btn.addEventListener('click',()=>{ document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active')); document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active')); btn.classList.add('active'); document.getElementById(btn.dataset.tab).classList.add('active'); }));
+      document.getElementById('skillSearch')?.addEventListener('input',e=>renderSkills(e.target.value));
+      document.getElementById('copySkills')?.addEventListener('click',()=>copyText(skills.map(s=>s.group+': '+s.items.join(', ')).join('\n'),'Skills copied'));
+      document.getElementById('copyPitch').addEventListener('click',()=>copyText(pitch,'Recruiter pitch copied'));
+      document.getElementById('copyContact').addEventListener('click',()=>copyText(contactText,'Contact copied'));
+      const modal=document.getElementById('resumeModal'); document.getElementById('openResume').addEventListener('click',()=>modal.classList.add('show')); document.getElementById('closeModal').addEventListener('click',()=>modal.classList.remove('show')); modal.addEventListener('click',e=>{ if(e.target===modal) modal.classList.remove('show') });
+      const cmdk=document.getElementById('cmdk'); document.getElementById('cmdBtn').addEventListener('click',()=>{cmdk.classList.add('show'); document.getElementById('cmdInput').focus();}); document.addEventListener('keydown',e=>{ if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k'){ e.preventDefault(); cmdk.classList.add('show'); document.getElementById('cmdInput').focus(); } if(e.key==='Escape'){cmdk.classList.remove('show'); modal.classList.remove('show')}}); cmdk.addEventListener('click',e=>{ if(e.target===cmdk) cmdk.classList.remove('show') }); document.querySelectorAll('.cmdk-item').forEach(b=>b.addEventListener('click',()=>{ location.hash=b.dataset.jump; cmdk.classList.remove('show'); }));
+      document.getElementById('roleSelect').addEventListener('change',e=>{ const d=roleData[e.target.value]; document.getElementById('matchScore').textContent=d.score+'%'; document.getElementById('matchBar').style.width=d.score+'%'; document.getElementById('matchText').textContent=d.text; });
+      document.querySelectorAll('.prompt').forEach(b=>b.addEventListener('click',()=>{ const box=document.getElementById('chatBox'); box.innerHTML += `<div class="msg"><strong>${b.textContent}</strong><br>${promptData[b.dataset.prompt]}</div>`; box.scrollTop=box.scrollHeight; }));
+      document.getElementById('contactForm').addEventListener('submit',e=>{ e.preventDefault(); showToast('Demo form validated'); e.target.reset(); });
+    });
+  </script>
+</body>
+</html>
