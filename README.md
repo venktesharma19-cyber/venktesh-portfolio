@@ -38,3 +38,34 @@ npm run dev
 
 Frontend: http://localhost:5173  
 Backend: http://localhost:8080
+
+
+## Push existing commit history
+
+This ZIP already includes a real Git history with seven clean commits. After extracting:
+
+```bash
+cd venktesh-proofos-fullstack
+git log --oneline
+```
+
+Then push to your GitHub repository:
+
+```bash
+git remote add origin https://github.com/YOUR_USERNAME/venktesh-portfolio.git
+git push -u origin main
+```
+
+## Enable GitHub Pages
+
+Use GitHub Actions as the Pages source:
+
+```txt
+Settings → Pages → Source → GitHub Actions
+```
+
+The workflow builds the React frontend and deploys it to GitHub Pages.
+
+## Backend
+
+The backend is included because this is a full-stack project. GitHub Pages cannot run Node/Express, so deploy the backend separately if you want real contact form/API mode. The frontend works in static mode even without backend deployment.
