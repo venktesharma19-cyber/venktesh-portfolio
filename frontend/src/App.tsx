@@ -1,4 +1,5 @@
 import { Hero } from './components/Hero';
+import { ProfileSections } from './components/ProfileSections';
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
         </div>
       </nav>
       <Hero />
+      <ProfileSections />
     </main>
   );
 }
