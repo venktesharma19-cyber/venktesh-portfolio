@@ -1,5 +1,6 @@
 import { Hero } from './components/Hero';
 import { ProfileSections } from './components/ProfileSections';
+import { Experience } from './components/Experience';
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
       </nav>
       <Hero />
       <ProfileSections />
+      <Experience />
     </main>
   );
 }
