@@ -1,6 +1,9 @@
 import { Hero } from './components/Hero';
 import { ProfileSections } from './components/ProfileSections';
 import { Experience } from './components/Experience';
+import { AIWork } from './components/AIWork';
+import { SkillsDashboard } from './components/SkillsDashboard';
+import { Projects } from './components/Projects';
 
 export default function App() {
   return (
@@ -17,6 +20,9 @@ export default function App() {
       <Hero />
       <ProfileSections />
       <Experience />
+      <AIWork />
+      <SkillsDashboard />
+      <Projects />
     </main>
   );
 }

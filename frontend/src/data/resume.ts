@@ -122,3 +122,54 @@ export const experiences: Experience[] = [
     stack: ['React', 'Node.js', 'REST APIs', 'PostgreSQL', 'Aurora/RDS', 'AWS EC2', 'S3', 'Lambda'],
   },
 ];
+
+
+export const projects: Project[] = [
+  {
+    title: 'Enterprise AI Onboarding Platform',
+    category: 'AI',
+    summary:
+      'AI/LLM onboarding workflows for model registration, metadata validation, deployment readiness, lifecycle management, and governance compliance.',
+    proof: ['Hugging Face repository integration', 'MinIO artifact ingestion', 'RBAC and audit readiness', 'OpenShift/Kubernetes deployment support'],
+    stack: ['SPFx', 'React', 'Python', 'REST APIs', 'Hugging Face', 'MinIO', 'OpenShift'],
+  },
+  {
+    title: 'Retail Commerce Platform',
+    category: 'Full Stack',
+    summary:
+      'React, Node.js, and Express commerce platform with payment integration, product management, order tracking, APIs, and cloud deployment workflows.',
+    proof: ['Stripe payment gateway', 'Product/order APIs', 'Redis caching', 'Jenkins/GitLab CI deployment'],
+    stack: ['React', 'TypeScript', 'Node.js', 'Express', 'Stripe', 'Redis', 'AWS'],
+  },
+  {
+    title: 'Clinical Real-Time Chat System',
+    category: 'Full Stack',
+    summary:
+      'Patient-provider communication system built around Socket.io, Node.js, React, MongoDB, JWT, RBAC, and Azure CI/CD delivery.',
+    proof: ['Socket.io rooms/namespaces', 'Presence and typing indicators', 'MongoDB schema design', 'Azure App Service deployment'],
+    stack: ['Socket.io', 'Node.js', 'React', 'MongoDB', 'JWT', 'Azure'],
+  },
+  {
+    title: 'Financial Invoicing System',
+    category: 'Cloud',
+    summary:
+      'Multi-currency invoicing and billing system using React UI, Node.js APIs, PostgreSQL Aurora/RDS, AWS EC2/S3, and Lambda automation.',
+    proof: ['Currency API retry/fallback logic', 'Secure REST APIs', 'PostgreSQL encryption/access controls', 'Lambda invoice automation'],
+    stack: ['React', 'Node.js', 'PostgreSQL', 'AWS EC2', 'S3', 'Lambda'],
+  },
+];
+
+export const aiSignals = [
+  {
+    title: 'AI Onboarding Workflow',
+    detail: 'Model registration, metadata validation, deployment readiness, lifecycle management, and governance compliance.',
+  },
+  {
+    title: 'Artifact Intelligence',
+    detail: 'Hugging Face and MinIO integrations for secure artifact ingestion, distribution, access control, and monitoring.',
+  },
+  {
+    title: 'Enterprise Automation',
+    detail: 'Power Apps, Power Automate, Python APIs, workflow orchestration, audit logging, and operational reporting.',
+  },
+];
